@@ -10,21 +10,24 @@
     <meta property="og:image" content="WebData/og-thumbnail.png" />
     <meta property="og:image:type" content="image/png">
     <meta property="og:description" content="복슬복슬 성에 야생의 푸리냥이 나타났다!" />
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="unity-container">
-      <canvas id="unity-canvas" style="width: 1440px; height: 900px; cursor: default;">
-      </canvas>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=900 height=1440 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
       </div>
+      <div id="unity-warning"> </div>
       <div id="unity-footer">
-        <div id="unity-build-title"></div>
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">PattingFurina</div>
       </div>
-      <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fpula39.github.io%2FPattingFurinaWeb%2F&count_bg=%233A8FE1&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
     </div>
     <script>
 
@@ -68,7 +71,7 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "creati-bu",
         productName: "PattingFurina",
-        productVersion: "0.0",
+        productVersion: "1.0",
         showBanner: unityShowBanner,
       };
 
