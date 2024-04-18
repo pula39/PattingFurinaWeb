@@ -3,7 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | PattingFurina</title>
+    <title>복실복실 푸리냥 대모험</title>
+    <meta property="og:url" content="https://pula39.github.io/pattingFurinaWeb/" />
+    <meta property="og:title" content="복실복실 푸리냥 대모험" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://pula39.github.io/PattingFurinaWeb/WebData/og-thumbnail.png" />
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:description" content="복슬복슬 성에 야생의 푸리냥이 나타났다!" />
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -17,11 +23,7 @@
         </div>
       </div>
       <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">PattingFurina</div>
-      </div>
+      <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fpula39.github.io%2FPattingFurinaWeb%2F&count_bg=%233A8FE1&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
     </div>
     <script>
 
@@ -76,29 +78,73 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        container.className = "unity-mobile";
-        canvas.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-
-      } else {
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+      // canvas.style.width = "100%";
+      // canvas.style.height = "100%";
 
-        canvas.style.width = "900px";
-        canvas.style.height = "1440px";
-      }
+      // var resizeFun = function(event){
+      //   var newWidth = canvas.getBoundingClientRect().width;
+      //   var newHeight = newWidth * (9.0 / 16.0);
+
+      //   canvas.style.height = newHeight + "px";
+      //   console.log("Resize me! ")
+      //   console.log(newWidth)
+      //   console.log(newHeight)
+      //   console.dir(canvas.style)
+      // }
+      // window.addEventListener('resize', resizeFun);
+
+      // resizeFun(null)
+
+
 
       loadingBar.style.display = "block";
+
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+
+      var resizeFun = function(event){
+        var windowWidth = document.querySelector("#unity-container").clientWidth;
+        var windowHeight = document.querySelector("#unity-container").clientHeight;
+        var window_aspect_ratio = windowWidth * 1.0 / windowHeight;
+        var preferred_aspect_ratio = 9.0 / 16.0;
+
+        if(window_aspect_ratio >= preferred_aspect_ratio){
+          // widrh 3200 heigh 900 
+          // width should ne 1600
+          // width = 900 * (16 / 9) = 1600
+          width = preferred_aspect_ratio * windowHeight;
+          height = windowHeight;
+        }else{
+          // widrh 1600 heigh 20000 
+          // height should be 900 
+          // 
+          // height = 900 / (16 / 9) = 900
+          width = windowWidth;
+          height =  windowWidth / preferred_aspect_ratio;
+        }
+
+        // var newWidth = canvas.getBoundingClientRect().width;
+        // var newHeight = newWidth * (9.0 / 16.0);
+
+        // canvas.width = width + "px";
+        // canvas.height = height + "px";
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        console.log("Resize me! ")
+        console.log("window width", width)
+        console.log("window height", height)
+        console.log("window original width", windowWidth)
+        console.log("window original height", windowHeight)
+        console.log("canvas width", canvas.width)
+        console.log("canvas height", canvas.height)
+        // console.log(newWidth)
+        // console.log(newHeight)
+        console.dir(canvas.style)
+      }
+      window.addEventListener('resize', resizeFun);
+
+      resizeFun(null)
 
       var script = document.createElement("script");
       script.src = loaderUrl;
@@ -107,9 +153,9 @@
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
-                fullscreenButton.onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
+                // fullscreenButton.onclick = () => {
+                //   unityInstance.SetFullscreen(1);
+                // };
               }).catch((message) => {
                 alert(message);
               });
@@ -118,5 +164,6 @@
       document.body.appendChild(script);
 
     </script>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" ></script>
   </body>
 </html>
