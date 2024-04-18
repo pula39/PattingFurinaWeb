@@ -14,10 +14,7 @@ body {
     flex-direction: column;
   }
 
-#unity-container.unity-desktop { left: 100%; top: 100%; 
-    align-items: center;
-    justify-content: center;
-}
+#unity-container.unity-desktop { left: 100%; top: 100%; }
 #unity-container.unity-mobile {
     display: flex;
     height: 100%;
